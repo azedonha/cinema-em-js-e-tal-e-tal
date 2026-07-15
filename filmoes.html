@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            text-align: center;
+            font-family: Arial;
+            color: rgb(209, 205, 200);
+            background-color: rgb(37, 37, 37);
+        }
+
+        .card{
+            border: 1px solid rgb(161, 20, 36);
+            width: 250px;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎥Cinema!!🍿</h1>
+    <p>Bem-vinda ao seu catálogo de filmes!! o((>ω<))o</p>
+
+    <input type="text" id="nome" placeholder="Nome do Filme">
+    <input type="number" id="preco" placeholder="Preço">
+    <input type="text" id="categoria" placeholder="Categoria">
+    <input type="number" id="classificacao" placeholder="Classicação">
+    <button onclick="adicionaritem()">Adicionar Item</button>
+
+    <div id="catalogo"></div>
+    
+    <script>
+        let produtos = [
+            { 
+                nome: "Diário de Uma Paixão",
+               preco: 20.00,
+               categoria: "💗Romance",
+               classificacao: 14
+
+             },
+              {
+                nome: "As Branquelas",
+               preco: 20.00,
+               categoria: "🤣Comédia",
+               classificacao: 14,
+
+             },
+             { 
+                nome: "À Espera de Um Milagre",
+               preco: 20.00,
+               categoria: "🎭Drama",
+               classificacao: 16
+
+             },
+             { 
+                nome: "A Morte do Demônio em Ascenção",
+               preco: 20.00,
+               categoria: "👻Terror",
+               classificacao: 16
+
+             },
+
+             
+        ];
+
+        function listarprodutos(){
+            let catalogo = document.getElementById("catalogo");
+
+            catalogo.innerHTML = "";
+
+            for(let i = 0; i < produtos.length; i++){
+                catalogo.innerHTML += 
+                "<div class='card'>" +
+                    "<h2>" + produtos[i].nome + "</h2>" +
+                    "<p>" + produtos[i].preco + "</p>" +
+                    "<p>" + produtos[i].categoria + "</p>" +
+                    "<p>" + produtos[i].classificacao + "</p>" +
+                    "<img src=' + i +'.jpg width='300' height='200'>"
+                "</div>"
+             }
+            }
+
+            listarprodutos();
+        
+            function adicionaritem(){
+                let nome = document.getElementById("nome").value;
+                let preco = document.getElementById("preco").value;
+                let categoria = document.getElementById("categoria").value;
+                let classificacao = document.getElementById("classificacao").value;
+
+                produtos.push({
+                    nome: nome,
+                    preco: preco,
+                    categoria: categoria,
+                    classificacao: classificacao
+                });
+
+                listarprodutos();
+
+                document.getElementById("nome").value = "";
+                document.getElementById("preco").value = "";
+                document.getElementById("categoria").value = "";
+                document.getElementById("classificacao").value = "";
+            }
+    </script>
+
+</body>
+</html>
