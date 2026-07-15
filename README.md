@@ -1,1 +1,2 @@
-# cinema-em-js-e-tal-e-tal
+# Catálogo de Filmes
+Dupla: Andriel e Lívia Sbardella
