@@ -2,19 +2,55 @@
 <html lang="en">
 <head>
     <style>
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    justify-content: center; /* Centraliza as colunas */
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.card img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+
+    .catalogo {
+        display: grid;
+    grid-template-columns: repeat(2, 300px);
+    justify-content: center;
+    gap: 15px; /* espaço entre os cards */
+    padding: 20px;}
+}
+
         body{
             text-align: center;
             font-family: Arial;
-            color: rgb(209, 205, 200);
-            background-color: rgb(37, 37, 37);
+            color: rgb(88, 12, 45);
+            background-color: rgb(161, 81, 126);
         }
 
         .card{
-            border: 1px solid rgb(161, 20, 36);
-            width: 250px;
-            margin: 10px auto;
-            padding: 10px;
-            border-radius: 10px;
+            width: 100%;
+    box-sizing: border-box;
+    border: 5px solid rgb(88, 12, 45);
+    background-color: rgb(255, 221, 238);
+    border-radius: 10px;
+    padding: 10px;
         }
     </style>
 </head>
@@ -28,58 +64,67 @@
     <input type="number" id="classificacao" placeholder="Classicação">
     <button onclick="adicionaritem()">Adicionar Item</button>
 
+    <br><br>
+
+    <input type="text" id="pesquisa" placeholder="Pesquisar filme..." onkeyup="listarprodutos()">
+
     <div id="catalogo"></div>
     
     <script>
+
         let produtos = [
-            { 
-                nome: "Diário de Uma Paixão",
-               preco: 20.00,
-               categoria: "💗Romance",
-               classificacao: 14
+    {
+        nome: "Diário de Uma Paixão",
+        preco: 20,
+        categoria: "💗Romance",
+        classificacao: 14,
+        imagem: "0.jpg"
+    },
+    {
+        nome: "As Branquelas",
+        preco: 20,
+        categoria: "🤣Comédia",
+        classificacao: 14,
+        imagem: "1.jpg"
+    },
+    {
+        nome: "À Espera de Um Milagre",
+        preco: 20,
+        categoria: "🎭Drama",
+        classificacao: 16,
+        imagem: "2.jpg"
+    },
+    {
+        nome: "A Morte do Demônio em Ascensão",
+        preco: 20,
+        categoria: "👻Terror",
+        classificacao: 16,
+        imagem: "3.jpg"
+    }
+];
 
-             },
-              {
-                nome: "As Branquelas",
-               preco: 20.00,
-               categoria: "🤣Comédia",
-               classificacao: 14,
+       function listarprodutos() {
+    let catalogo = document.getElementById("catalogo");
+    let pesquisa = document.getElementById("pesquisa").value.toLowerCase();
 
-             },
-             { 
-                nome: "À Espera de Um Milagre",
-               preco: 20.00,
-               categoria: "🎭Drama",
-               classificacao: 16
+    catalogo.innerHTML = "";
+    catalogo.className = "catalogo"; // Aplica o layout de duas colunas
 
-             },
-             { 
-                nome: "A Morte do Demônio em Ascenção",
-               preco: 20.00,
-               categoria: "👻Terror",
-               classificacao: 16
+    for (let i = 0; i < produtos.length; i++) {
 
-             },
+        if (produtos[i].nome.toLowerCase().includes(pesquisa)) {
 
-             
-        ];
-
-        function listarprodutos(){
-            let catalogo = document.getElementById("catalogo");
-
-            catalogo.innerHTML = "";
-
-            for(let i = 0; i < produtos.length; i++){
-                catalogo.innerHTML += 
+            catalogo.innerHTML +=
                 "<div class='card'>" +
+                    "<img src='" + produtos[i].imagem + "' width='200'>" +
                     "<h2>" + produtos[i].nome + "</h2>" +
-                    "<p>" + produtos[i].preco + "</p>" +
+                    "<p>R$ " + produtos[i].preco + "</p>" +
                     "<p>" + produtos[i].categoria + "</p>" +
-                    "<p>" + produtos[i].classificacao + "</p>" +
-                    "<img src=' + i +'.jpg width='300' height='200'>"
-                "</div>"
-             }
-            }
+                    "<p>Classificação: " + produtos[i].classificacao + " anos</p>" +
+                "</div>";
+        }
+    }
+}
 
             listarprodutos();
         
